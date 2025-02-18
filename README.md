@@ -32,8 +32,8 @@ A **Product Management App** built with **Next.js 15**, allowing users to create
 
 1. **Clone the repository**
    ```sh
-   git clone https://github.com/your-username/product-management-app.git
-   cd product-management-app
+   git clone https://github.com/saiful7778/product-management.git
+   cd product-management
    ```
 2. **Install dependencies**
    ```sh
