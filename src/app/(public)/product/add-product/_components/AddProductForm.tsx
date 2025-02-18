@@ -27,6 +27,7 @@ import { useAppDispatch } from "@/hooks/redux.hooks";
 import { addProduct } from "@/lib/redux/features/product/productSlice";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { productStatus } from "@/lib/staticData";
 
 const AddProductForm: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -39,8 +40,6 @@ const AddProductForm: React.FC = () => {
       productName: "",
       price: 0,
       image: "",
-      category: "",
-      status: "",
     },
   });
 
@@ -144,16 +143,23 @@ const AddProductForm: React.FC = () => {
                 <FormLabel>Product Status</FormLabel>
                 <FormControl>
                   <Select
-                    onValueChange={field.onChange}
-                    defaultValue={field.value}
+                    onValueChange={(value) =>
+                      field.onChange(
+                        productStatus.find((status) => status.value === value)
+                      )
+                    }
+                    defaultValue={field.value?.value}
                     disabled={isLoading}
                   >
                     <SelectTrigger>
                       <SelectValue placeholder="Select status" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="public">Public</SelectItem>
-                      <SelectItem value="private">Private</SelectItem>
+                      {productStatus.map((status) => (
+                        <SelectItem key={status.value} value={status.value}>
+                          {status.label}
+                        </SelectItem>
+                      ))}
                     </SelectContent>
                   </Select>
                 </FormControl>

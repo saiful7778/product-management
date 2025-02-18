@@ -1,5 +1,4 @@
 import * as z from "zod";
-import { categories } from "../staticData";
 
 export const productSchema = z.object({
   productName: z
@@ -14,13 +13,22 @@ export const productSchema = z.object({
     .url("Invalid image URL")
     .min(1, "Product image is required")
     .max(200, "Product image too long"),
-  category: z
-    .string({ required_error: "Product category is required" })
-    .refine(
-      (data) => categories.some((category) => category.value === data),
-      "Product category does not exist"
-    ),
-  status: z.string(),
+  category: z.object({
+    value: z
+      .string({ required_error: "Product category is required" })
+      .min(1, "Product category is required"),
+    label: z
+      .string({ required_error: "Product category is required" })
+      .min(1, "Product category is required"),
+  }),
+  status: z.object({
+    value: z
+      .string({ required_error: "Product status is required" })
+      .min(1, "Product status is required"),
+    label: z
+      .string({ required_error: "Product status is required" })
+      .min(1, "Product status is required"),
+  }),
 });
 
 export type ProductSchemaType = z.infer<typeof productSchema>;

@@ -1,5 +1,5 @@
 import { Button } from "@/components/shadcn/ui/button";
-import { Plus } from "lucide-react";
+import { Box } from "lucide-react";
 import Link from "next/link";
 
 const HomePage: React.FC = () => {
@@ -7,9 +7,9 @@ const HomePage: React.FC = () => {
     <div>
       <div className="text-right">
         <Button asChild>
-          <Link href="/product/add-product">
-            <Plus />
-            <span>Add product</span>
+          <Link href="/product">
+            <Box className="w-4 h-4" />
+            <span>Products</span>
           </Link>
         </Button>
       </div>

@@ -1,8 +1,21 @@
 export const categories = [
-  { value: "cloth", label: "cloth" },
-  { value: "electronics", label: "electronics" },
-  { value: "accessories", label: "accessories" },
-  { value: "toys", label: "toys" },
-  { value: "kitchenware", label: "kitchenware" },
-  { value: "other", label: "other" },
+  { value: "cloth", label: "Cloth" },
+  { value: "electronics", label: "Electronics" },
+  { value: "accessories", label: "Accessories" },
+  { value: "toys", label: "Toys" },
+  { value: "kitchenware", label: "Kitchenware" },
+  { value: "other", label: "Other" },
+];
+
+export const rowPerPage = [10, 20, 30, 40, 50];
+
+export const productStatus = [
+  {
+    value: "out-of-stock",
+    label: "Out of Stock",
+  },
+  {
+    value: "in-stock",
+    label: "In Stock",
+  },
 ];

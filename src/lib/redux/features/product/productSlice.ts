@@ -7,8 +7,8 @@ export interface ProductState {
   name: string;
   price: number;
   image: string;
-  category: string;
-  status: string;
+  category: { value: string; label: string };
+  status: { value: string; label: string };
 }
 
 const localstorageKey = "product";

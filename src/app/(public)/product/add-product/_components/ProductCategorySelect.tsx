@@ -21,8 +21,8 @@ import { Check, ChevronDown } from "lucide-react";
 import { useState } from "react";
 
 const ProductCategorySelect: React.FC<{
-  value: string;
-  setValue: (value: string) => void;
+  value: { value: string; label: string };
+  setValue: ({ value, label }: { value: string; label: string }) => void;
   disabled: boolean;
 }> = ({ value, setValue, disabled }) => {
   const [openPopover, setOpenPopover] = useState<boolean>(false);
@@ -41,7 +41,8 @@ const ProductCategorySelect: React.FC<{
             disabled={disabled}
           >
             {value
-              ? categories.find((category) => category.value === value)?.label
+              ? categories.find((category) => category.value === value?.value)
+                  ?.label
               : "Select product category"}
             <ChevronDown className="opacity-50" />
           </Button>
@@ -58,7 +59,7 @@ const ProductCategorySelect: React.FC<{
                   value={category.label}
                   key={category.value}
                   onSelect={() => {
-                    setValue(category.value);
+                    setValue(category);
                     setOpenPopover(false);
                   }}
                 >
@@ -66,7 +67,9 @@ const ProductCategorySelect: React.FC<{
                   <Check
                     className={cn(
                       "ml-auto",
-                      category.value === value ? "opacity-100" : "opacity-0"
+                      category.value === value?.value
+                        ? "opacity-100"
+                        : "opacity-0"
                     )}
                   />
                 </CommandItem>
