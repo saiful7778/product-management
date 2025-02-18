@@ -35,7 +35,7 @@ const ProductItem: React.FC<{ productData: ProductType }> = ({
   };
 
   return (
-    <div className="bg-popover border border-input space-y-2 rounded-md p-4">
+    <div className="bg-popover border border-input space-y-2 rounded-md p-2 sm:p-4">
       <figure className="w-full aspect-square overflow-hidden rounded-md">
         <Image
           src={productData.image}

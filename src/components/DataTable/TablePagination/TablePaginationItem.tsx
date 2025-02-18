@@ -21,7 +21,7 @@ const TablePaginationItem = <TData,>({
       <Button
         variant="outline"
         size="icon"
-        className="hidden lg:flex"
+        className="hidden md:flex"
         onClick={() => table.setPageIndex(0)}
         disabled={!table.getCanPreviousPage()}
       >
@@ -49,7 +49,7 @@ const TablePaginationItem = <TData,>({
       <Button
         variant="outline"
         size="icon"
-        className="hidden lg:flex"
+        className="hidden md:flex"
         onClick={() => table.setPageIndex(table.getPageCount() - 1)}
         disabled={!table.getCanNextPage()}
       >

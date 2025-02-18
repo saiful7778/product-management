@@ -17,7 +17,7 @@ const TableFilter = <TData,>({ columns }: TableFilterProps<TData>) => {
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <Button variant="outline" size="sm">
+        <Button variant="outline">
           <SlidersHorizontal />
           <span>Filter</span>
         </Button>

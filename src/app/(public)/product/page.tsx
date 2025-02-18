@@ -12,10 +12,10 @@ export const metadata: Metadata = {
 
 const ProductPage: React.FC = () => {
   return (
-    <div className="space-y-4">
-      <div className="flex items-center gap-2 justify-between">
+    <div className="space-y-2 sm:space-y-4">
+      <div className="flex flex-wrap items-center gap-2 justify-between">
         <GoBackButton />
-        <Button asChild>
+        <Button size="default" asChild>
           <Link href="/product/add-product">
             <Plus />
             <span>Add product</span>

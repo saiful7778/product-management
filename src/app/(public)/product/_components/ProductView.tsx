@@ -29,7 +29,7 @@ const ProductView: React.FC<{
             alt={`${productData.name} image`}
           />
         </figure>
-        <div className="my-2 grid grid-cols-2 gap-2">
+        <div className="my-2 sm:text-base text-sm grid grid-cols-2 gap-2">
           <div className="col-span-2">
             <div className="font-bold">Name:</div>
             <div>{productData.name}</div>

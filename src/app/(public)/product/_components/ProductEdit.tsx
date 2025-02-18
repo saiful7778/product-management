@@ -46,7 +46,7 @@ const ProductEdit: React.FC<{
 }> = ({ productData, open, onOpenChange }) => {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent>
+      <DialogContent className="max-h-[90vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle>Update Product</DialogTitle>
           <DialogDescription>
@@ -99,7 +99,10 @@ const ProductUpdateForm: React.FC<{
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-2.5">
+      <form
+        onSubmit={form.handleSubmit(handleSubmit)}
+        className="space-y-1 sm:space-y-2.5"
+      >
         <FormField
           control={form.control}
           name="productName"
@@ -117,7 +120,7 @@ const ProductUpdateForm: React.FC<{
             </FormItem>
           )}
         />
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-2.5">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-1 sm:gap-2.5">
           <FormField
             control={form.control}
             name="image"
@@ -159,7 +162,7 @@ const ProductUpdateForm: React.FC<{
             control={form.control}
             name="category"
             render={({ field }) => (
-              <FormItem className="col-span-2">
+              <FormItem className="md:col-span-2">
                 <FormLabel>Product Category</FormLabel>
                 <ProductCategorySelect
                   value={field.value}

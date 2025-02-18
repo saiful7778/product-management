@@ -9,7 +9,7 @@ const HomePage: React.FC = () => {
   const { products } = useProduct();
   return (
     <>
-      <div className="flex items-center gap-4 justify-end mb-4">
+      <div className="flex flex-wrap items-center gap-2 sm:gap-4 justify-end mb-2 sm:mb-4">
         <Button asChild>
           <Link href="/product">
             <Box className="w-4 h-4" />

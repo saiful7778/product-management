@@ -63,7 +63,7 @@ const AddProductForm: React.FC = () => {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(handleSubmit)}
-        className="space-y-2.5 max-w-xl w-full mx-auto"
+        className="sm:space-y-2.5 space-y-1 max-w-xl w-full mx-auto"
       >
         <FormField
           control={form.control}
@@ -82,7 +82,7 @@ const AddProductForm: React.FC = () => {
             </FormItem>
           )}
         />
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-2.5">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-1 sm:gap-2.5">
           <FormField
             control={form.control}
             name="image"
@@ -124,7 +124,7 @@ const AddProductForm: React.FC = () => {
             control={form.control}
             name="category"
             render={({ field }) => (
-              <FormItem className="col-span-2">
+              <FormItem className="md:col-span-2">
                 <FormLabel>Product Category</FormLabel>
                 <ProductCategorySelect
                   value={field.value}
