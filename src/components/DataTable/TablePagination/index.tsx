@@ -2,6 +2,7 @@
 import { type Table } from "@tanstack/react-table";
 import TableRowItem from "./TableRowItem";
 import TablePaginationItem from "./TablePaginationItem";
+import { Suspense } from "react";
 
 interface TablePaginationProps<TData> {
   table: Table<TData>;
@@ -15,7 +16,9 @@ const TablePagination = <TData,>({ table }: TablePaginationProps<TData>) => {
         {table.getPageCount()}
       </div>
       <div className="flex items-center flex-wrap gap-2 sm:ml-auto md:gap-6">
-        <TableRowItem table={table} />
+        <Suspense>
+          <TableRowItem table={table} />
+        </Suspense>
         <TablePaginationItem table={table} />
       </div>
     </div>
