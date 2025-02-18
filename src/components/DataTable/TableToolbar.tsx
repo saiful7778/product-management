@@ -1,4 +1,3 @@
-import React from "react";
 import { Input } from "../shadcn/ui/input";
 import { type Table } from "@tanstack/react-table";
 import TableFilter from "./TableFilters";
@@ -27,7 +26,9 @@ const TableToolbar = <TData,>({
         placeholder="Search"
         value={(table.getColumn(searchKey)?.getFilterValue() as string) ?? ""}
         onChange={(event) =>
-          table.getColumn(searchKey)?.setFilterValue(event.target.value)
+          table
+            .getColumn(searchKey)
+            ?.setFilterValue(event.target.value.toLowerCase())
         }
         className="w-full max-w-xs"
       />

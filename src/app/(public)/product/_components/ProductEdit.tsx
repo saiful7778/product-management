@@ -37,7 +37,7 @@ import { useAppDispatch } from "@/hooks/redux.hooks";
 import { updateProduct } from "@/lib/redux/features/product/productSlice";
 import ProductCategorySelect from "../add-product/_components/ProductCategorySelect";
 import { productStatus } from "@/lib/staticData";
-import { type ProductType } from "./ProductTableColumn";
+import type { ProductType } from "@/types";
 
 const ProductEdit: React.FC<{
   productData: ProductType;

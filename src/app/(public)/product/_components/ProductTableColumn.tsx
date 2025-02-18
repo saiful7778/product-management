@@ -3,15 +3,7 @@ import { type ColumnDef } from "@tanstack/react-table";
 import ProductTableRowAction from "./ProductTableRowAction";
 import TableFilterHeader from "@/components/DataTable/TableFilterHeader";
 import Image from "next/image";
-
-export interface ProductType {
-  id: string;
-  name: string;
-  price: number;
-  image: string;
-  category: { value: string; label: string };
-  status: { value: string; label: string };
-}
+import type { ProductType } from "@/types";
 
 export const productTableColumn: ColumnDef<ProductType>[] = [
   {

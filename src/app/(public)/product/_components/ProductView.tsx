@@ -5,7 +5,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/shadcn/ui/dialog";
-import { type ProductType } from "./ProductTableColumn";
+import type { ProductType } from "@/types";
 import Image from "next/image";
 
 const ProductView: React.FC<{

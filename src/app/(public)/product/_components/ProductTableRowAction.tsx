@@ -14,9 +14,9 @@ import { deleteProduct } from "@/lib/redux/features/product/productSlice";
 import { type Row } from "@tanstack/react-table";
 import { Ellipsis, Eye, Pencil, Trash2 } from "lucide-react";
 import { useState } from "react";
-import { type ProductType } from "./ProductTableColumn";
 import ProductEdit from "./ProductEdit";
 import ProductView from "./ProductView";
+import type { ProductType } from "@/types";
 
 interface ProductTableRowActionProps<TData> {
   row: Row<TData & ProductType>;
