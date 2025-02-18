@@ -1,18 +1,10 @@
 import { useAppSelector } from "@/hooks/redux.hooks";
+import type { ProductType } from "@/types";
 import { getItem, setItem } from "@/utils/localstorage";
 import { createSlice, nanoid, type PayloadAction } from "@reduxjs/toolkit";
 
-export interface ProductState {
-  id: string;
-  name: string;
-  price: number;
-  image: string;
-  category: { value: string; label: string };
-  status: { value: string; label: string };
-}
-
-const localstorageKey = "product";
-const allProducts = getItem(localstorageKey) as ProductState[];
+const localstorageKey = "products";
+const allProducts = getItem(localstorageKey) as ProductType[];
 
 const initialState = {
   products: allProducts || [],
@@ -23,17 +15,17 @@ const productSlice = createSlice({
   name: "products",
   initialState,
   reducers: {
-    seedProduct: (state, action: PayloadAction<ProductState[]>) => {
+    seedProduct: (state, action: PayloadAction<ProductType[]>) => {
       state.products = action.payload;
       state.totalProducts = action.payload.length;
       setItem(localstorageKey, state.products);
     },
-    addProduct: (state, action: PayloadAction<Omit<ProductState, "id">>) => {
+    addProduct: (state, action: PayloadAction<Omit<ProductType, "id">>) => {
       state.products.push({ id: nanoid(), ...action.payload });
       state.totalProducts = state.totalProducts + 1;
       setItem(localstorageKey, state.products);
     },
-    updateProduct: (state, action: PayloadAction<ProductState>) => {
+    updateProduct: (state, action: PayloadAction<ProductType>) => {
       const index = state.products.findIndex(
         (product) => product.id === action.payload.id
       );

@@ -2,10 +2,10 @@
 
 import { useAppDispatch } from "@/hooks/redux.hooks";
 import {
-  type ProductState,
   seedProduct,
   useProduct,
 } from "@/lib/redux/features/product/productSlice";
+import type { ProductType } from "@/types";
 import { nanoid } from "@reduxjs/toolkit";
 import { useEffect, useMemo } from "react";
 
@@ -15,7 +15,7 @@ const SeedProvider: React.FC<{ children: React.ReactNode }> = ({
   const { products } = useProduct();
   const dispatch = useAppDispatch();
 
-  const seedProducts: ProductState[] = useMemo(
+  const seedProducts: ProductType[] = useMemo(
     () => [
       {
         id: nanoid(),

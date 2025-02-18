@@ -6,3 +6,5 @@ export interface ProductType {
   category: { value: string; label: string };
   status: { value: string; label: string };
 }
+
+export type FavoriteProductType = ProductType;
