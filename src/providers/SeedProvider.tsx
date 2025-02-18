@@ -34,7 +34,7 @@ const SeedProvider: React.FC<{ children: React.ReactNode }> = ({
         name: "Smartphone",
         price: 699.99,
         image:
-          "https://i.ibb.co.com/1YDCxV0r/GTRACING-GTWD-200-Gaming-Chair-with-Footrest-Height-Adjustable-Office-Swivel-Reclining-White-43754c7.webp",
+          "https://i.ibb.co.com/RG0LZ68f/Xiaomi-Redmi-Note-12-Pro-Plus-2.png",
         category: { value: "accessories", label: "Accessories" },
         status: {
           value: "in-stock",
@@ -46,7 +46,7 @@ const SeedProvider: React.FC<{ children: React.ReactNode }> = ({
         name: "Gaming Chair",
         price: 199.99,
         image:
-          "https://i.ibb.co.com/RG0LZ68f/Xiaomi-Redmi-Note-12-Pro-Plus-2.png",
+          "https://i.ibb.co.com/1YDCxV0r/GTRACING-GTWD-200-Gaming-Chair-with-Footrest-Height-Adjustable-Office-Swivel-Reclining-White-43754c7.webp",
         category: { value: "accessories", label: "Accessories" },
         status: {
           value: "out-of-stock",

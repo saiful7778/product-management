@@ -16,6 +16,7 @@ import { Ellipsis, Eye, Pencil, Trash2 } from "lucide-react";
 import { useState } from "react";
 import { type ProductType } from "./ProductTableColumn";
 import ProductEdit from "./ProductEdit";
+import ProductView from "./ProductView";
 
 interface ProductTableRowActionProps<TData> {
   row: Row<TData & ProductType>;
@@ -26,6 +27,7 @@ const ProductTableRowAction = <TData,>({
 }: ProductTableRowActionProps<TData>) => {
   const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
   const [openEditDialog, setOpenEditDialog] = useState(false);
+  const [openViewDialog, setOpenViewDialog] = useState(false);
   const dispatch = useAppDispatch();
 
   const handleDelete = () => {
@@ -47,7 +49,7 @@ const ProductTableRowAction = <TData,>({
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end">
-          <DropdownMenuItem>
+          <DropdownMenuItem onClick={() => setOpenViewDialog((prev) => !prev)}>
             <span>View</span>
             <DropdownMenuShortcut>
               <Eye />
@@ -69,6 +71,11 @@ const ProductTableRowAction = <TData,>({
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
+      <ProductView
+        productData={row.original}
+        open={openViewDialog}
+        onOpenChange={setOpenViewDialog}
+      />
       <ProductEdit
         productData={row.original}
         open={openEditDialog}
