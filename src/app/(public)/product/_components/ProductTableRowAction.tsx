@@ -15,6 +15,7 @@ import { type Row } from "@tanstack/react-table";
 import { Ellipsis, Eye, Pencil, Trash2 } from "lucide-react";
 import { useState } from "react";
 import { type ProductType } from "./ProductTableColumn";
+import ProductEdit from "./ProductEdit";
 
 interface ProductTableRowActionProps<TData> {
   row: Row<TData & ProductType>;
@@ -24,6 +25,7 @@ const ProductTableRowAction = <TData,>({
   row,
 }: ProductTableRowActionProps<TData>) => {
   const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
+  const [openEditDialog, setOpenEditDialog] = useState(false);
   const dispatch = useAppDispatch();
 
   const handleDelete = () => {
@@ -51,7 +53,7 @@ const ProductTableRowAction = <TData,>({
               <Eye />
             </DropdownMenuShortcut>
           </DropdownMenuItem>
-          <DropdownMenuItem>
+          <DropdownMenuItem onClick={() => setOpenEditDialog((prev) => !prev)}>
             <span>Update</span>
             <DropdownMenuShortcut>
               <Pencil />
@@ -67,6 +69,11 @@ const ProductTableRowAction = <TData,>({
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
+      <ProductEdit
+        productData={row.original}
+        open={openEditDialog}
+        onOpenChange={setOpenEditDialog}
+      />
       <DeleteDialog
         open={openDeleteDialog}
         onOpenChange={setOpenDeleteDialog}
