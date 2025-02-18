@@ -19,9 +19,13 @@ const favoriteSlice = createSlice({
       state,
       action: PayloadAction<Omit<FavoriteProductType, "id">>
     ) => {
-      state.products.push({ id: nanoid(), ...action.payload });
-      state.totalProducts = state.totalProducts + 1;
-      setItem(localstorageKey, state.products);
+      if (
+        !state.products.some((product) => product.name === action.payload.name)
+      ) {
+        state.products.push({ id: nanoid(), ...action.payload });
+        state.totalProducts = state.totalProducts + 1;
+        setItem(localstorageKey, state.products);
+      }
     },
     removeFavorite: (state, action: PayloadAction<{ id: string }>) => {
       state.products = state.products.filter(

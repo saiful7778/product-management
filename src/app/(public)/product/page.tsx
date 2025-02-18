@@ -3,6 +3,7 @@ import { Plus } from "lucide-react";
 import { type Metadata } from "next";
 import Link from "next/link";
 import ProductTable from "./_components/ProductTable";
+import GoBackButton from "@/components/GoBackButton";
 
 export const metadata: Metadata = {
   title: "Product List",
@@ -12,7 +13,8 @@ export const metadata: Metadata = {
 const ProductPage: React.FC = () => {
   return (
     <div className="space-y-4">
-      <div className="text-right">
+      <div className="flex items-center gap-2 justify-between">
+        <GoBackButton />
         <Button asChild>
           <Link href="/product/add-product">
             <Plus />

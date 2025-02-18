@@ -4,12 +4,34 @@ import Image from "next/image";
 import { Button } from "./shadcn/ui/button";
 import { Star } from "lucide-react";
 import toast from "react-hot-toast";
+import { useAppDispatch } from "@/hooks/redux.hooks";
+import { addFavorite } from "@/lib/redux/features/favorite/favoriteSlice";
 
 const ProductItem: React.FC<{ productData: ProductType }> = ({
   productData,
 }) => {
+  const dispatch = useAppDispatch();
+
   const handleFavorite = () => {
-    toast.success("Product is added to favorites");
+    toast.promise(
+      async () => {
+        dispatch(
+          addFavorite({
+            name: productData.name,
+            price: productData.price,
+            image: productData.image,
+            status: productData.status,
+            category: productData.category,
+          })
+        );
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+      },
+      {
+        loading: "Adding...",
+        success: "Product is added to your favorites",
+        error: "Something went wrong",
+      }
+    );
   };
 
   return (

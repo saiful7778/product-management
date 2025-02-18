@@ -2,18 +2,24 @@
 import ProductItem from "@/components/ProductItem";
 import { Button } from "@/components/shadcn/ui/button";
 import { useProduct } from "@/lib/redux/features/product/productSlice";
-import { Box } from "lucide-react";
+import { Box, Star } from "lucide-react";
 import Link from "next/link";
 
 const HomePage: React.FC = () => {
   const { products } = useProduct();
   return (
-    <div>
-      <div className="text-right">
+    <>
+      <div className="flex items-center gap-4 justify-end mb-4">
         <Button asChild>
           <Link href="/product">
             <Box className="w-4 h-4" />
             <span>Products</span>
+          </Link>
+        </Button>
+        <Button asChild>
+          <Link href="/product/favorites">
+            <Star className="w-4 h-4" />
+            <span>Favorites</span>
           </Link>
         </Button>
       </div>
@@ -22,7 +28,7 @@ const HomePage: React.FC = () => {
           <ProductItem key={`product-${idx}`} productData={product} />
         ))}
       </div>
-    </div>
+    </>
   );
 };
 
