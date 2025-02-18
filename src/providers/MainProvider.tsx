@@ -1,5 +1,6 @@
 "use client";
 import ReduxProvider from "./ReduxProvider";
+import SeedProvider from "./SeedProvider";
 import ThemeProvider from "./ThemeProvider";
 
 const MainProvider: React.FC<{ children: React.ReactNode }> = ({
@@ -13,7 +14,7 @@ const MainProvider: React.FC<{ children: React.ReactNode }> = ({
         enableSystem
         disableTransitionOnChange
       >
-        {children}
+        <SeedProvider>{children}</SeedProvider>
       </ThemeProvider>
     </ReduxProvider>
   );

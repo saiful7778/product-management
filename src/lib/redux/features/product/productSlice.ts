@@ -23,6 +23,11 @@ const productSlice = createSlice({
   name: "products",
   initialState,
   reducers: {
+    seedProduct: (state, action: PayloadAction<ProductState[]>) => {
+      state.products = action.payload;
+      state.totalProducts = action.payload.length;
+      setItem(localstorageKey, state.products);
+    },
     addProduct: (state, action: PayloadAction<Omit<ProductState, "id">>) => {
       state.products.push({ id: nanoid(), ...action.payload });
       state.totalProducts = state.totalProducts + 1;
@@ -48,6 +53,6 @@ const productSlice = createSlice({
 });
 
 export const useProduct = () => useAppSelector((state) => state.product);
-export const { addProduct, updateProduct, deleteProduct } =
+export const { seedProduct, addProduct, updateProduct, deleteProduct } =
   productSlice.actions;
 export default productSlice.reducer;
