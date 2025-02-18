@@ -2,7 +2,7 @@ import { Badge } from "@/components/shadcn/ui/badge";
 import { type ColumnDef } from "@tanstack/react-table";
 import ProductTableRowAction from "./ProductTableRowAction";
 
-interface ProductType {
+export interface ProductType {
   id: string;
   name: string;
   price: number;
@@ -53,6 +53,6 @@ export const productTableColumn: ColumnDef<ProductType>[] = [
   },
   {
     id: "actions",
-    cell: () => <ProductTableRowAction />,
+    cell: ({ row }) => <ProductTableRowAction row={row} />,
   },
 ];

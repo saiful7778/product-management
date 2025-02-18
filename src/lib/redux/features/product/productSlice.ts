@@ -37,7 +37,7 @@ const productSlice = createSlice({
       }
       setItem(localstorageKey, state.products);
     },
-    deleteProduct: (state, action: PayloadAction<ProductState>) => {
+    deleteProduct: (state, action: PayloadAction<{ id: string }>) => {
       state.products = state.products.filter(
         (product) => product.id !== action.payload.id
       );

@@ -23,7 +23,8 @@ import { useState } from "react";
 const ProductCategorySelect: React.FC<{
   value: string;
   setValue: (value: string) => void;
-}> = ({ value, setValue }) => {
+  disabled: boolean;
+}> = ({ value, setValue, disabled }) => {
   const [openPopover, setOpenPopover] = useState<boolean>(false);
 
   return (
@@ -37,6 +38,7 @@ const ProductCategorySelect: React.FC<{
               "w-full justify-between",
               !value && "text-muted-foreground"
             )}
+            disabled={disabled}
           >
             {value
               ? categories.find((category) => category.value === value)?.label

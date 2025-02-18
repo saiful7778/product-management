@@ -1,5 +1,4 @@
 "use client";
-
 import {
   Form,
   FormControl,
@@ -27,8 +26,10 @@ import {
 import { useAppDispatch } from "@/hooks/redux.hooks";
 import { addProduct } from "@/lib/redux/features/product/productSlice";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 const AddProductForm: React.FC = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const dispatch = useAppDispatch();
   const router = useRouter();
 
@@ -44,6 +45,7 @@ const AddProductForm: React.FC = () => {
   });
 
   const handleSubmit = async (e: ProductSchemaType) => {
+    setIsLoading(true);
     dispatch(
       addProduct({
         name: e.productName,
@@ -53,7 +55,9 @@ const AddProductForm: React.FC = () => {
         status: e.status,
       })
     );
+    await new Promise((resolve) => setTimeout(resolve, 2000));
     router.push("/product");
+    setIsLoading(false);
   };
 
   return (
@@ -69,7 +73,11 @@ const AddProductForm: React.FC = () => {
             <FormItem>
               <FormLabel>Product Name</FormLabel>
               <FormControl>
-                <Input placeholder="Product name" {...field} />
+                <Input
+                  placeholder="Product name"
+                  disabled={isLoading}
+                  {...field}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -86,6 +94,7 @@ const AddProductForm: React.FC = () => {
                   <Input
                     type="url"
                     placeholder="Product Image(url)"
+                    disabled={isLoading}
                     {...field}
                   />
                 </FormControl>
@@ -103,6 +112,7 @@ const AddProductForm: React.FC = () => {
                   <Input
                     type="number"
                     placeholder="Product price"
+                    disabled={isLoading}
                     {...field}
                     onChange={(e) => field.onChange(Number(e.target.value))}
                   />
@@ -119,6 +129,7 @@ const AddProductForm: React.FC = () => {
                 <FormLabel>Product Category</FormLabel>
                 <ProductCategorySelect
                   value={field.value}
+                  disabled={isLoading}
                   setValue={(value) => field.onChange(value)}
                 />
                 <FormMessage />
@@ -135,6 +146,7 @@ const AddProductForm: React.FC = () => {
                   <Select
                     onValueChange={field.onChange}
                     defaultValue={field.value}
+                    disabled={isLoading}
                   >
                     <SelectTrigger>
                       <SelectValue placeholder="Select status" />
@@ -151,8 +163,8 @@ const AddProductForm: React.FC = () => {
           />
         </div>
         <div className="grid grid-cols-2 gap-2.5"></div>
-        <Button className="w-full" type="submit">
-          Submit
+        <Button className="w-full" type="submit" disabled={isLoading}>
+          {isLoading ? "Submitting..." : "Submit"}
         </Button>
       </form>
     </Form>
