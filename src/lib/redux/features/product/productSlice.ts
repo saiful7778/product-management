@@ -1,7 +1,8 @@
 import { useAppSelector } from "@/hooks/redux.hooks";
-import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
+import { getItem, setItem } from "@/utils/localstorage";
+import { createSlice, nanoid, type PayloadAction } from "@reduxjs/toolkit";
 
-interface ProductState {
+export interface ProductState {
   id: string;
   name: string;
   price: number;
@@ -10,25 +11,38 @@ interface ProductState {
   status: string;
 }
 
-const initialState: ProductState[] = [];
+const localstorageKey = "product";
+const allProducts = getItem(localstorageKey) as ProductState[];
+
+const initialState = {
+  products: allProducts || [],
+  totalProducts: allProducts ? allProducts?.length : 0,
+};
 
 const productSlice = createSlice({
   name: "products",
   initialState,
   reducers: {
-    addProduct: (state, action: PayloadAction<ProductState>) => {
-      state.push(action.payload);
+    addProduct: (state, action: PayloadAction<Omit<ProductState, "id">>) => {
+      state.products.push({ id: nanoid(), ...action.payload });
+      state.totalProducts = state.totalProducts + 1;
+      setItem(localstorageKey, state.products);
     },
     updateProduct: (state, action: PayloadAction<ProductState>) => {
-      const index = state.findIndex(
+      const index = state.products.findIndex(
         (product) => product.id === action.payload.id
       );
       if (index !== -1) {
-        state[index] = action.payload;
+        state.products[index] = action.payload;
       }
+      setItem(localstorageKey, state.products);
     },
     deleteProduct: (state, action: PayloadAction<ProductState>) => {
-      state = state.filter((product) => product.id !== action.payload.id);
+      state.products = state.products.filter(
+        (product) => product.id !== action.payload.id
+      );
+      state.totalProducts = state.totalProducts - 1;
+      setItem(localstorageKey, state.products);
     },
   },
 });
